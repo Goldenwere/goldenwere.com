@@ -22,8 +22,6 @@ footer
 </template>
 
 <style scoped lang='sass'>
-@import '@/src/styles/variables.scss'
-
 footer
   bottom: 0
   left: 0
@@ -31,7 +29,7 @@ footer
   padding: 1em
   height: 4em
   position: fixed
-  background-color: $brand-body-bg
+  background-color: var(--theme-body-bg)
   box-shadow: 0 0 0.5em 0 #000a
   display: flex
   justify-content: flex-start
@@ -44,15 +42,15 @@ footer
     height: 5em
     margin-bottom: 1em
     margin-left: auto
-    background-color: $brand-body-bg
-    border-top: 0.25em solid $brand-accent-a-fg
+    background-color: var(--theme-body-bg)
+    border-top: 0.25em solid var(--theme-accent-a-fg)
     border-radius: 0.5em
-    box-shadow: 0 0 0.5em 0 transparentize($brand-body-fg, 0.5)
+    box-shadow: 0 0 0.5em 0 var(--theme-body-fg)
     img
       cursor: pointer
       width: 100%
       height: 100%
       padding: 10%
   .copyright
-    color: $brand-body-fg
+    color: var(--theme-body-fg)
 </style>

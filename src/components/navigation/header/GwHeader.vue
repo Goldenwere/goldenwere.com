@@ -25,8 +25,6 @@ header
 </template>
 
 <style scoped lang='sass'>
-@import '@/src/styles/variables.scss'
-
 header
   top: 0
   left: 0
@@ -34,7 +32,7 @@ header
   padding: 1em
   height: 4em
   position: fixed
-  background-color: $brand-body-bg
+  background-color: var(--theme-body-bg)
   box-shadow: 0 0 0.5em 0 #000a
   display: flex
   justify-content: flex-start
@@ -46,10 +44,10 @@ header
     height: 5em
     margin-top: 1em
     margin-right: 3em
-    background-color: $brand-body-bg
-    border-bottom: 0.25em solid $brand-accent-a-fg
+    background-color: var(--theme-body-bg)
+    border-bottom: 0.25em solid var(--theme-accent-a-fg)
     border-radius: 0.5em
-    box-shadow: 0 0 0.5em 0 transparentize($brand-body-fg, 0.5)
+    box-shadow: 0 0 0.5em 0 var(--theme-body-fg)
     img
       cursor: pointer
       width: 100%
@@ -62,10 +60,10 @@ header
     margin: 0
     padding: 0
     text-decoration: none
-    color: $brand-accent-a-fg
-    font-family: Oxanium, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    color: var(--theme-accent-a-fg)
+    font-family: var(--theme-font-display)
     font-weight: bold
     text-transform: capitalize
     &:hover
-      color: $brand-accent-b-fg
+      color: var(--theme-accent-b-fg)
 </style>

@@ -20,4 +20,6 @@ export interface Theme {
   themeAccentBBg: Color
   themeAccentBFg: Color
   themeTransitionFunction: string
+  themeHighlightFg: Color
+  themeHighlightBg: Color
 }

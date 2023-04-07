@@ -37,12 +37,11 @@ fetchAndParseContent('/content/site.yml')
   overflow: hidden
   z-index: 1
 main
-  top: 0
+  top: 4em
   left: 0
   right: 0
-  bottom: 0
-  overflow: scroll
-  padding-top: 4em
+  bottom: 4em
+  overflow: auto
   position: absolute
   z-index: 0
 </style>

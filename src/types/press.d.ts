@@ -9,21 +9,39 @@ import type { Video } from '@/src/types/embeds/video'
  */
 export interface Press {
   /* any articles, reviews, and other forms of citation that the app has received*/
-  articles?: List[]
-  /* any awards, accolades, and other forms of recognition that the app has received */
-  awards?: List[]
+  articles?: {
+    /* the title of the article */
+    title: string
+    /* a link to the article */
+    link: Link
+  }[]
+  /* any awards, nominations, and other forms of recognition that the app has received */
+  awards?: {
+    /* the title of the award */
+    title: string
+    /* a link to the award if applicable/available */
+    link?: Link
+  }[]
   /* image that appears as a header for the app */
   banner?: Image
   /* logos and other forms of branding related to the app */
-  branding?: Image[]
+  branding?: {
+    /* an optional location to download all images as an archive file */
+    download?: string
+    /* images to show directly on the page */
+    samples: Image[]
+  }
   /* contact information related to the app */
-  contact?: Link[]
+  contact?: {
+    link: Link
+    title: string
+  }[]
   /* credits for people who contributed to the app */
   credits?: {
     /* the person/entity that contributed */
     who: string
     /* what they contributed */
-    for: string
+    for?: string
     /* any links to the person/entity that may be relevant */
     links?: Link[]
   }[]

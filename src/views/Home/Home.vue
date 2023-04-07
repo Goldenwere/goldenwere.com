@@ -25,7 +25,7 @@ if (store.home.about === undefined) {
 </script>
 
 <template lang='pug'>
-.content(
+.content.home(
   v-if='!!ready'
 )
   h1.title {{ site.name }}

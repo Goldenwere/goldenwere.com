@@ -20,22 +20,23 @@ body
   color: var(--theme-modal-fg)
   font-family: var(--theme-font-body)
   .nav
+    text-transform: capitalize
+  .link
     transition-property: color, outline, transform
     transition-duration: 0.5s
     transition-timing-function: var(--theme-transition-function)
+    transform: scale(1)
     outline: 1px solid transparent
+    cursor: pointer
     color: var(--theme-accent-a-fg)
+    margin: 0
+    padding: 0
+    text-decoration: none
+    font-family: var(--theme-font-display)
+    font-weight: bold
     &:focus
       outline-color: var(--theme-accent-b-fg)
     &:hover
       color: var(--theme-accent-b-fg)
     &:active
       transform: scale(1.1)
-  .link
-    cursor: pointer
-    margin: 0
-    padding: 0
-    text-decoration: none
-    font-family: var(--theme-font-display)
-    font-weight: bold
-    text-transform: capitalize

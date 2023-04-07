@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { fetchAndParseContent } from '@/src/utilities/fetch'
 import { useStore } from '@/src/store'
@@ -10,18 +10,22 @@ const store = useStore()
 const route = useRoute()
 const content = reactive(store.home)
 const site = reactive(store.site)
+const ready = ref(false)
 
 if ((store.home as any).about === undefined) {
   fetchAndParseContent('/content/home.yml')
     .then((content) => {
       store.$patch({ home: content as any })
+      ready.value = true
     })
+} else {
+  ready.value = true
 }
 </script>
 
 <template lang='pug'>
 .content(
-  v-if='content && site'
+  v-if='!!ready'
 )
   h1.title {{ site.name }}
   .lander

@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { useStore } from '@/src/store'
 import { fetchAndParseContent } from '@/src/utilities/fetch'
 import type { Press } from '@/src/types/press'
@@ -10,6 +11,7 @@ const props = defineProps<{
 }>()
 
 const store = useStore()
+const route = useRoute()
 const ready = ref(false)
 const press = ref({} as Press)
 
@@ -31,6 +33,10 @@ if (!found) {
   press.value = found.content
   ready.value = true
 }
+
+function scrollTo (id: string) {
+  document.getElementById(id)?.scrollIntoView()
+}
 </script>
 
 <template lang='pug'>
@@ -38,37 +44,43 @@ if (!found) {
   v-if='ready'
 )
   nav
-    a(
-      href='#description'
+    router-link.nav.link(
+      to='#description'
+      @click.native='scrollTo("description")'
     ) Description
-    a(
+    router-link.nav.link(
       v-if='press.videos'
-      href='#videos'
+      to='#videos'
+      @click.native='scrollTo("videos")'
     ) Videos
-    a(
+    router-link.nav.link(
       v-if='press.videos'
-      href='#images'
+      to='#images'
+      @click.native='scrollTo("images")'
     ) Images
-    a(
+    router-link.nav.link(
       v-if='press.videos'
-      href='#branding'
+      to='#branding'
+      @click.native='scrollTo("branding")'
     ) Branding
-    a(
+    router-link.nav.link(
       v-if='press.articles || press.awards'
-      href='#accolades'
+      to='#accolades'
+      @click.native='scrollTo("accolades")'
     ) Accolades
-    a(
+    router-link.nav.link(
       v-if='press.contact || press.credits'
-      href='#contributors'
+      to='#contributors'
+      @click.native='scrollTo("contributors")'
     ) Contributors
   article
-    h1 {{ press.title }}
     .banner(
       v-if='press.banner'
     )
       GwImage(
         :image='press.banner'
       )
+    h1 {{ press.title }}
     section.factsheet
       h2 Fact Sheet
     .main
@@ -175,5 +187,21 @@ if (!found) {
 </template>
 
 <style scoped lang='sass'>
-
+nav
+  position: fixed
+  top: 4em
+  margin-top: 2em
+  width: fit-content
+  margin-left: 1em
+  display: flex
+  flex-direction: column
+  .link
+    margin-bottom: 0.5em
+    font-size: 1.5em
+article
+  margin-left: 16em
+  margin-top: 2em
+.banner
+  height: 4em
+  width: auto
 </style>

@@ -54,4 +54,5 @@ header
   .link
     font-size: 2em
     line-height: 2em
+    margin-left: 1em
 </style>

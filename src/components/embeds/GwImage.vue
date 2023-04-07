@@ -18,6 +18,8 @@ const props = defineProps<{
 <style scoped lang='sass'>
 .container
   display: flex
+  width: 100%
+  height: 100%
   img
     width: auto
     height: auto

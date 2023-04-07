@@ -50,7 +50,7 @@ export interface Press {
   /* disclaimer for press/etc regarding usage permissions for the information on the page or the app as a whole */
   disclaimer?: string
   /* an aside of various facts related to the app */
-  factSheet?: Section[]
+  factSheet?: List[]
   /* images related to the app */
   images?: {
     /* an optional location to download all images as an archive file */

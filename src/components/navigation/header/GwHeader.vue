@@ -1,22 +1,24 @@
 <script setup lang='ts'>
 import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
 import { useStore } from '@/src/store'
+import { headerRoutes, homeRoute } from '@/src/router'
+import GwImage from '@/src/components/embeds/GwImage.vue'
 
-const router = useRouter()
 const store = useStore()
 
-const routes = ref(router.getRoutes())
+const routes = ref(headerRoutes)
+const home = ref(homeRoute)
 const site = reactive(store.site)
 </script>
 
 <template lang='pug'>
 header
   router-link.logo.nav(
-    :to='routes?.[0]'
+    :to='home'
   )
-    img(
-      :src='site.logo'
+    GwImage(
+      v-if='site?.logo'
+      :image='site.logo'
     )
   router-link.link.nav(
     v-for='route in routes'
@@ -48,11 +50,7 @@ header
     border-bottom: 0.25em solid var(--theme-accent-a-fg)
     border-radius: 0.5em
     box-shadow: 0 0 0.5em 0 var(--theme-body-fg)
-    img
-      cursor: pointer
-      width: 100%
-      height: 100%
-      padding: 10%
+    padding: 1em
   .link
     font-size: 2em
     line-height: 2em

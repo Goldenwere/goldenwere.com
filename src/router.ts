@@ -20,3 +20,8 @@ const router = createRouter({
 })
 
 export default router
+
+export const homeRoute = SiteRoutes[0]
+export const headerRoutes = [
+  homeRoute,
+]

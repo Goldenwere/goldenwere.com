@@ -12,7 +12,7 @@ const site = reactive(store.site)
 
 <template lang='pug'>
 footer
-  router-link.logo(
+  router-link.logo.nav(
     :to='routes?.[0]'
   )
     img(

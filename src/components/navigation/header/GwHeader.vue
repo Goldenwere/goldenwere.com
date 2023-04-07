@@ -12,13 +12,13 @@ const site = reactive(store.site)
 
 <template lang='pug'>
 header
-  router-link.logo(
+  router-link.logo.nav(
     :to='routes?.[0]'
   )
     img(
       :src='site.logo'
     )
-  router-link.link(
+  router-link.link.nav(
     v-for='route in routes'
     :to='route'
   ) {{ route.name }}
@@ -54,16 +54,6 @@ header
       height: 100%
       padding: 10%
   .link
-    cursor: pointer
     font-size: 2em
     line-height: 2em
-    margin: 0
-    padding: 0
-    text-decoration: none
-    color: var(--theme-accent-a-fg)
-    font-family: var(--theme-font-display)
-    font-weight: bold
-    text-transform: capitalize
-    &:hover
-      color: var(--theme-accent-b-fg)
 </style>

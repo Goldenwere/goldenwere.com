@@ -3,11 +3,13 @@ import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { fetchAndParseContent } from '@/src/utilities/fetch'
 import { useStore } from '@/src/store'
+import GwImage from '@/src/components/embeds/GwImage.vue'
 import GwVideo from '@/src/components/embeds/GwVideo.vue'
 
 const store = useStore()
 const route = useRoute()
 const content = reactive(store.home)
+const site = reactive(store.site)
 
 if ((store.home as any).about === undefined) {
   fetchAndParseContent('/content/home.yml')
@@ -18,29 +20,41 @@ if ((store.home as any).about === undefined) {
 </script>
 
 <template lang='pug'>
-.content
+.content(
+  v-if='content && site'
+)
+  h1.title {{ site.name }}
   .lander
-    GwVideo.video(
+    GwVideo.lander-video(
       v-if='content.landingVideo'
       :video='content.landingVideo'
       fullscreen='false'
     )
     .lander-content
       p(
-        v-for='p in content?.landing'
+        v-for='p in content.landing'
         v-html='p'
       )
-  .about
+  section.about
+    h2 About
     p(
-      v-for='p in content?.about'
+      v-for='p in content.about'
       v-html='p'
+    )
+    GwImage.about-image(
+      :image='content.logo'
     )
 </template>
 
 <style scoped lang='sass'>
+h1
+  text-align: center
+  margin: 1em 0 0
+  font-size: 2em
+  color: var(--theme-accent-b-fg)
 .lander
   width: 100vmin
-  margin: 4em auto
+  margin: 2em auto
   position: relative
   .lander-video
     filter: brightness(50%) contrast(115%)
@@ -62,4 +76,6 @@ if ((store.home as any).about === undefined) {
 .about
   width: 100vmin
   margin: 4em auto
+  .about-image
+    height: 10em
 </style>

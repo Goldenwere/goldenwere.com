@@ -13,7 +13,7 @@ const videoUrl = computed(() => {
 </script>
 
 <template lang='pug'>
-.container
+.container.video
   iframe(
     loading='lazy'
     :src='videoUrl'

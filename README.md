@@ -1,4 +1,4 @@
-# `www.goldenwere.com`
+# `www.goldenwere.com` framework
 
 This is the framework used for building the Goldenwere home website. This framework is designed to be as separate as possible from Goldenwere branding/content in order to maintain re-usability while still being usable through CI/CD.
 
@@ -37,7 +37,9 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 Github Actions is configured to build `/dist` to AWS on push to `main`. `/content` must be syncronized manually.
 
 ## Content API
-The following content definitions are required/assumed by the node project in order to load properly.
+"Content" is defined as the text, images, and other information displayed by the framework, in addition to theme stylesheets that apply branding to the framework. Content is set up primarily in a `.gitignored` `/content` folder using YML files to update this information independently from the CI/CD framework (e.g. updating information about games, credits, etc.) and to make the framework itself more re-usable, open-source, and independent of branding. YML files for each view (i.e. `/src/views`) have associated modals to adhere to.
+
+The following content definitions are required (or assumed but optional) by the framework in order to load properly.
 
 ### `/content/meta/favicon.ico`
 Where the favicon for the site is stored.
@@ -50,10 +52,10 @@ Superfluous styles should go in these themes, such as rounded/decorative borders
 
 If this is missing and no other theme is selected, the site's styling will be broken.
 
-### `/content/press/brand.yml`
+### (OPTIONAL) `/content/press/brand.yml`
 Where the primary press kit page is for the website. All press kit pages must be in a format corresponding to `src/types/press.d.ts`.
 
-If this is missing, the press page will not load any information and will not load a link in the site header/navigation.
+If this is missing, the press page will not load any information when navigating to `/press/brand` and will not load a link in the site header/navigation.
 
 ### `/content/site.yml`
 Where the site's shared primary config is stored; must match `src/types/site.d.ts`.

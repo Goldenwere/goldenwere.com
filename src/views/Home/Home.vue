@@ -5,6 +5,7 @@ import { fetchAndParseContent } from '@/src/utilities/fetch'
 import { useStore } from '@/src/store'
 import GwImage from '@/src/components/embeds/GwImage.vue'
 import GwVideo from '@/src/components/embeds/GwVideo.vue'
+import type { Home } from '@/src/types/home'
 
 const store = useStore()
 const route = useRoute()
@@ -12,10 +13,10 @@ const content = reactive(store.home)
 const site = reactive(store.site)
 const ready = ref(false)
 
-if ((store.home as any).about === undefined) {
+if (store.home.about === undefined) {
   fetchAndParseContent('/content/home.yml')
     .then((content) => {
-      store.$patch({ home: content as any })
+      store.$patch({ home: content as Home })
       ready.value = true
     })
 } else {

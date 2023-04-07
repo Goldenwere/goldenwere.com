@@ -3,6 +3,7 @@ export type VideoType =
 | 'video'
 
 export interface Video {
+  title?: string
   type: VideoType
   id: string
 }

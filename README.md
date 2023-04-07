@@ -42,14 +42,20 @@ The following content definitions are required/assumed by the node project in or
 ### `/content/meta/favicon.ico`
 Where the favicon for the site is stored.
 
-Note that if this is missing, the site will not have a favicon for the browser.
+If this is missing, the site will not have a favicon for the browser.
 
 ### `/content/themes/base.css`
 Where the base/default theme is stored. All themes must be in a format corresponding to `src/types/theme.d.ts`.
+Superfluous styles should go in these themes, such as rounded/decorative borders, fancier text styling, etc. The framework will apply layout, size, position, etc., and will handle applying theme colors to basic elements.
 
-Note that if this is missing and no other theme is selected, the site's styling will be broken.
+If this is missing and no other theme is selected, the site's styling will be broken.
+
+### `/content/press/brand.yml`
+Where the primary press kit page is for the website. All press kit pages must be in a format corresponding to `src/types/press.d.ts`.
+
+If this is missing, the press page will not load any information and will not load a link in the site header/navigation.
 
 ### `/content/site.yml`
 Where the site's shared primary config is stored; must match `src/types/site.d.ts`.
 
-Note that if this is missing, a lot of the site's basic information and config will not be applied.
+If this is missing, a lot of the site's basic information and config will not be applied.

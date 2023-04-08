@@ -81,109 +81,111 @@ function scrollTo (id: string) {
         :image='press.banner'
       )
     h1 {{ press.title }}
-    section.factsheet
-      h2 Fact Sheet
-    .main
-      section#description
-        h2 Description
-      section#videos(
-        v-if='press.videos'
-      )
-        h2 Videos
-      section#images(
-        v-if='press.images'
-      )
-        h2 Images
-      section#branding(
-        v-if='press.branding'
-      )
-        h2 Branding
-      #accolades(
-        v-if='press.articles || press.awards'
-      )
-        section#awards(
-          v-if='press.awards'
+    .press-content
+      section.factsheet
+        h2 Fact Sheet
+      .main
+        section#description
+          h2 Description
+        section#videos(
+          v-if='press.videos'
         )
-          h3 Awards
-          ul
-            li(
-              v-for='award in press.awards'
-            )
-              span {{ award.title }}
-              span(
-                v-if='award.link'
+          h2 Videos
+        section#images(
+          v-if='press.images'
+        )
+          h2 Images
+        section#branding(
+          v-if='press.branding'
+        )
+          h2 Branding
+        .two-column#accolades(
+          v-if='press.articles || press.awards'
+        )
+          section#awards(
+            v-if='press.awards'
+          )
+            h3 Awards
+            ul
+              li(
+                v-for='award in press.awards'
               )
-                | (
+                span {{ award.title }}
+                span(
+                  v-if='award.link'
+                )
+                  | &#32;(
+                  a.link(
+                    :href='award.link.href'
+                  ) {{ award.link.caption || award.link.href }}
+                  | )
+          section#articles(
+            v-if='press.articles'
+          )
+            h3 Articles
+            ul
+              li(
+                v-for='article in press.articles'
+              )
+                .title
+                  span {{ article.title }}
                 a.link(
-                  :href='award.link.href'
-                ) {{ award.link.caption || award.link.href }}
-                | )
-        section#articles(
-          v-if='press.articles'
+                  :href='article.link.href'
+                ) {{ article.link.caption || article.link.href }}
+        .two-column#contributors(
+          v-if='press.contact || press.credits'
         )
-          h3 Articles
-          ul
-            li(
-              v-for='article in press.articles'
-            )
-              h4 {{ article.title }}
-              a.link(
-                :href='article.link.href'
-              ) {{ article.link.caption || article.link.href }}
-      #contributors(
-        v-if='press.contact || press.credits'
-      )
-        section#credits(
-          v-if='press.credits'
-        )
-          h2 Credits
-          ul
-            li(
-              v-for='credit in press.credits'
-            )
-              .who
-                span {{ credit.who }}
-              .for(
-                v-if='credit.for'
+          section#credits(
+            v-if='press.credits'
+          )
+            h2 Credits
+            ul
+              li(
+                v-for='credit in press.credits'
               )
-                span {{ credit.for }}
-              .links(
-                v-if='credit.link?.length === 1'
-              )
-                a.link(
-                  :href='credit.links[0].href'
-                ) {{ credit.links[0].caption || credit.links[0].href }}
-              ul.links(
-                v-else-if='credit.link?.length > 1'
-              )
-                li(
-                  v-for='link in credit.links'
+                .who
+                  span {{ credit.who }}
+                .for(
+                  v-if='credit.for'
+                )
+                  span {{ credit.for }}
+                .links(
+                  v-if='credit.link?.length === 1'
                 )
                   a.link(
-                    :href='link.href'
-                  ) {{ link.caption || link.href }}
-        section#contact(
-          v-if='press.contact'
+                    :href='credit.links[0].href'
+                  ) {{ credit.links[0].caption || credit.links[0].href }}
+                ul.links(
+                  v-else-if='credit.link?.length > 1'
+                )
+                  li(
+                    v-for='link in credit.links'
+                  )
+                    a.link(
+                      :href='link.href'
+                    ) {{ link.caption || link.href }}
+          section#contact(
+            v-if='press.contact'
+          )
+            h2 Contact
+            ul
+              li(
+                v-for='contact in press.contact'
+              )
+                .title(
+                  v-if='contact.title'
+                ) 
+                  span {{ contact.title }}
+                a.link(
+                  :href='contact.link.href'
+                ) {{ contact.link.caption || contact.link.href }}
+        section#disclaimer(
+          v-if='press.disclaimer'
         )
-          h2 Contact
-          ul
-            li(
-              v-for='contact in press.contact'
-            )
-              .title(
-                v-if='contact.title'
-              ) 
-                span {{ contact.title }}
-              a.link(
-                :href='contact.link.href'
-              ) {{ contact.link.caption || contact.link.href }}
-      section#disclaimer(
-        v-if='press.disclaimer'
-      )
-        p(
-          v-for='p in press.disclaimer'
-          v-html='p'
-        )
+          p(
+            v-for='p in press.disclaimer'
+            v-html='p'
+          )
 </template>
 
 <style scoped lang='sass'>
@@ -204,4 +206,18 @@ article
 .banner
   height: 4em
   width: auto
+.press-content
+  display: grid
+  grid-template-columns: 1fr 3fr
+  .main
+    .link
+      font-weight: normal
+    .two-column
+      display: grid
+      grid-template-columns: 1fr 1fr
+ul
+  padding-left: 1em
+.title
+  font-weight: bold
+
 </style>

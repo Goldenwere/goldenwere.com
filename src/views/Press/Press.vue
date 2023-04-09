@@ -83,7 +83,7 @@ function scrollTo (id: string) {
       )
     h1 {{ press.title }}
     .press-content
-      section.factsheet
+      section#factsheet
         h2 Fact Sheet
         GwRecursiveText(
           v-for='content in press.factSheet'
@@ -203,7 +203,7 @@ nav
   margin-left: 1em
   display: flex
   flex-direction: column
-  .link
+  a
     margin-bottom: 0.5em
     font-size: 1.5em
 article
@@ -216,7 +216,7 @@ article
   display: grid
   grid-template-columns: 1fr 3fr
   .main
-    .link
+    a
       font-weight: normal
     .two-column
       display: grid
@@ -226,4 +226,9 @@ ul
 .title
   font-weight: bold
 
+#factsheet::v-deep
+  h3, h4, h5, h6
+    margin-bottom: 0
+  p, ul
+    margin-top: 0
 </style>

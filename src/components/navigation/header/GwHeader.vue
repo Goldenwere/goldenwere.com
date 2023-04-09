@@ -34,8 +34,7 @@ header
   padding: 1em
   height: 4em
   position: fixed
-  background-color: var(--theme-body-bg)
-  box-shadow: 0 0 0.5em 0 #000a
+  background-color: var(--theme-modal-bg)
   display: flex
   justify-content: flex-start
   align-items: center
@@ -46,10 +45,7 @@ header
     height: 5em
     margin-top: 1em
     margin-right: 3em
-    background-color: var(--theme-body-bg)
-    border-bottom: 0.25em solid var(--theme-accent-a-fg)
-    border-radius: 0.5em
-    box-shadow: 0 0 0.5em 0 var(--theme-body-fg)
+    background-color: var(--theme-modal-bg)
     padding: 1em
   .link
     font-size: 2em

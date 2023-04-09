@@ -49,19 +49,19 @@ section(
     v-if='props.section.heading && props.depth === 1'
   ) {{ props.section.heading }}
   h2(
-    v-if='props.section.heading && props.depth === 2'
+    v-else-if='props.section.heading && props.depth === 2'
   ) {{ props.section.heading }}
   h3(
-    v-if='props.section.heading && props.depth === 3'
+    v-else-if='props.section.heading && props.depth === 3'
   ) {{ props.section.heading }}
   h4(
-    v-if='props.section.heading && props.depth === 4'
+    v-else-if='props.section.heading && props.depth === 4'
   ) {{ props.section.heading }}
   h5(
-    v-if='props.section.heading && props.depth === 5'
+    v-else-if='props.section.heading && props.depth === 5'
   ) {{ props.section.heading }}
   h6(
-    v-if='props.section.heading && props.depth === 6'
+    v-else
   ) {{ props.section.heading }}
   GwRecursiveText(
     v-for='content in props.section.content'

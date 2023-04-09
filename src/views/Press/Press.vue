@@ -4,8 +4,8 @@ import { useRoute } from 'vue-router'
 import { useStore } from '@/src/store'
 import { fetchAndParseContent } from '@/src/utilities/fetch'
 import type { Press } from '@/src/types/press'
+import GwArticle from '@/src/components/embeds/GwArticle.vue'
 import GwImage from '@/src/components/embeds/GwImage.vue'
-import GwRecursiveText from '@/src/components/embeds/GwRecursiveText.vue'
 
 const props = defineProps<{
   id: string
@@ -74,7 +74,7 @@ function scrollTo (id: string) {
       to='#contributors'
       @click.native='scrollTo("contributors")'
     ) Contributors
-  article
+  article.press-article
     .banner(
       v-if='press.banner'
     )
@@ -85,10 +85,8 @@ function scrollTo (id: string) {
     .press-content
       section#factsheet
         h2 Fact Sheet
-        GwRecursiveText(
-          v-for='content in press.factSheet'
-          :section='content'
-          :depth='3'
+        GwArticle(
+          :content='press.factSheet'
         )
       .main
         section#description
@@ -206,7 +204,7 @@ nav
   a
     margin-bottom: 0.5em
     font-size: 1.5em
-article
+.press-article
   margin-left: 16em
   margin-top: 2em
 .banner
@@ -227,8 +225,39 @@ ul
   font-weight: bold
 
 #factsheet::v-deep
-  h3, h4, h5, h6
+  h1, h2, h3, h4, h5, h6
     margin-bottom: 0
+  h1
+    font-size: 1.25em
+    font-weight: bold
+    font-style: normal
+  h2
+    font-size: 1.25em
+    font-weight: normal
+    font-style: italic
+  h3
+    font-size: 1.1em
+    font-weight: bold
+    font-style: normal
+  h4
+    font-size: 1.1em
+    font-weight: normal
+    font-style: italic
+  h5
+    font-size: 0.95em
+    font-weight: bold
+    font-style: normal
+  h6
+    font-size: 0.95em
+    font-weight: normal
+    font-style: italic
+  > h2
+    font-size: 1.35em
+    font-weight: bold
+    font-style: normal
   p, ul
     margin-top: 0
+    font-size: 0.8em
+  ul
+    padding-left: 1em
 </style>

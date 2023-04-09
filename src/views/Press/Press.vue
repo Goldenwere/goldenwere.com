@@ -5,6 +5,7 @@ import { useStore } from '@/src/store'
 import { fetchAndParseContent } from '@/src/utilities/fetch'
 import type { Press } from '@/src/types/press'
 import GwImage from '@/src/components/embeds/GwImage.vue'
+import GwRecursiveText from '@/src/components/embeds/GwRecursiveText.vue'
 
 const props = defineProps<{
   id: string
@@ -84,6 +85,11 @@ function scrollTo (id: string) {
     .press-content
       section.factsheet
         h2 Fact Sheet
+        GwRecursiveText(
+          v-for='content in press.factSheet'
+          :section='content'
+          :depth='3'
+        )
       .main
         section#description
           h2 Description

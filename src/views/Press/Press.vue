@@ -91,6 +91,9 @@ function scrollTo (id: string) {
       .main
         section#description
           h2 Description
+          GwArticle(
+            :content='press.description'
+          )
         section#videos(
           v-if='press.videos'
         )
@@ -260,4 +263,8 @@ ul
     font-size: 0.8em
   ul
     padding-left: 1em
+
+#description::v-deep
+  article
+    max-width: 32em
 </style>

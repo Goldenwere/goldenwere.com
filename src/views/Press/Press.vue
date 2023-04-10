@@ -189,7 +189,7 @@ function scrollTo (id: string) {
                 )
                   span {{ credit.for }}
                 .links(
-                  v-if='credit.link?.length === 1'
+                  v-if='credit.links?.length === 1'
                 )
                   a.link(
                     :href='credit.links[0].href'
@@ -324,4 +324,10 @@ ul
 #description::v-deep
   article
     max-width: 32em
+
+#credits
+  .who
+    font-weight: bold
+  .for
+    font-style: italic
 </style>

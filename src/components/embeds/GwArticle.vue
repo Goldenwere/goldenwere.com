@@ -9,9 +9,6 @@ const props = defineProps<{
 const parsed = computed(() => {
   return marked.parse(props.content.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/,''))
 })
-
-console.log(props.content)
-console.log(parsed)
 </script>
 
 <template lang='pug'>

@@ -1,24 +1,25 @@
 <script setup lang='ts'>
 import { nextTick } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { capitalizeFirstLetter } from '@/src/utilities/string'
 import { fetchAndParseContent } from '@/src/utilities/fetch'
 import { useStore } from '@/src/store'
 import type { Site } from '@/src/types/site'
 import GwHeader from '@/src/components/navigation/header/GwHeader.vue'
 import GwFooter from '@/src/components/navigation/footer/GwFooter.vue'
-import router from './router'
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 
 fetchAndParseContent('/content/site.yml')
-  .then((content) => {
+  .then(async (content) => {
     store.$patch({ site: content as Site })
+    await router.isReady()
     document.title = `${capitalizeFirstLetter(route.name as string)} - ${store.site.name}`
-    router.afterEach((from, to) => {
+    router.afterEach((to, from) => {
       nextTick(() => {
-        document.title = `${to.name as string} - ${store.site.name}`
+        document.title = `${capitalizeFirstLetter(to.name as string)} - ${store.site.name}`
       })
     })
   })

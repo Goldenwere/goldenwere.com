@@ -6,6 +6,7 @@ import { fetchAndParseContent } from '@/src/utilities/fetch'
 import type { Press } from '@/src/types/press'
 import GwArticle from '@/src/components/embeds/GwArticle.vue'
 import GwImage from '@/src/components/embeds/GwImage.vue'
+import GwVideo from '@/src/components/embeds/GwVideo.vue'
 
 const props = defineProps<{
   id: string
@@ -98,14 +99,45 @@ function scrollTo (id: string) {
           v-if='press.videos'
         )
           h2 Videos
+          .media-gallery
+            .gallery-element(
+              v-for='video in press.videos'
+            )
+              GwVideo(
+                :video='video'
+                :is-background='false'
+              )
+              p(
+                v-if='video.title'
+              ) {{ video.title }}
         section#images(
           v-if='press.images'
         )
           h2 Images
+          .media-gallery
+            .gallery-element(
+              v-for='img in press.images.samples'
+            )
+              GwImage(
+                :image='img'
+              )
+              p(
+                v-if='img.caption'
+              ) {{ img.caption }}
         section#branding(
           v-if='press.branding'
         )
           h2 Branding
+          .media-gallery
+            .gallery-element(
+              v-for='img in press.branding.samples'
+            )
+              GwImage(
+                :image='img'
+              )
+              p(
+                v-if='img.caption'
+              ) {{ img.caption }}
         .two-column#accolades(
           v-if='press.articles || press.awards'
         )
@@ -226,6 +258,31 @@ ul
   padding-left: 1em
 .title
   font-weight: bold
+
+.media-gallery
+  display: grid
+  row-gap: 0.25em
+  column-gap: 0.25em
+  .gallery-element
+    border: 1px solid var(--theme-body-border)
+    padding: 0.5em
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    .container
+      position: relative
+    p
+      margin: auto
+      text-align: center
+#videos .media-gallery
+  grid-template-columns: 1fr 1fr
+#images .media-gallery,
+#branding .media-gallery
+  grid-template-columns: 1fr 1fr 1fr
+  .gallery-element
+    .image
+      height: 8em
+      width: 100%
 
 #factsheet::v-deep
   h1, h2, h3, h4, h5, h6

@@ -33,6 +33,7 @@ if (store.home.about === undefined) {
     GwVideo.lander-video(
       v-if='content.landingVideo'
       :video='content.landingVideo'
+      :is-background='true'
       fullscreen='false'
     )
     .lander-content

@@ -22,4 +22,5 @@ export interface Theme {
   themeTransitionFunction: string
   themeHighlightFg: Color
   themeHighlightBg: Color
+  themeBodyBorder: Color
 }

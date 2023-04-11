@@ -14,6 +14,8 @@ h1, h2, h3, h4, h5, h6
 
 code, pre
   font-family: var(--theme-font-mono)
+  background-color: var(--theme-code-bg)
+  color: var(--theme-code-fg)
 
 body
   background-color: var(--theme-body-bg)
@@ -40,3 +42,10 @@ body
       color: var(--theme-accent-b-fg)
     &:active
       transform: scale(1.1)
+
+article
+  table
+    border: 1px solid var(--theme-body-border)
+    th, td
+      padding: 0.5em
+      border: 1px solid var(--theme-body-border)

@@ -75,6 +75,11 @@ function scrollTo (id: string) {
       to='#contributors'
       @click.native='scrollTo("contributors")'
     ) Contributors
+    router-link.nav.link(
+      v-if='press.disclaimer'
+      to='#disclaimer'
+      @click.native='scrollTo("disclaimer")'
+    ) Disclaimer
   article.press-article
     .banner(
       v-if='press.banner'
@@ -221,6 +226,7 @@ function scrollTo (id: string) {
         section#disclaimer(
           v-if='press.disclaimer'
         )
+          h2 Disclaimer
           p(
             v-for='p in press.disclaimer'
             v-html='p'
@@ -241,6 +247,7 @@ nav
     font-size: 1.5em
 .press-article
   margin-left: 16em
+  margin-right: 4em
   margin-top: 2em
 .banner
   height: 4em

@@ -13,6 +13,8 @@ export interface Theme {
   themeFontMono: FontFamily
   themeBodyBg: Color
   themeBodyFg: Color
+  themeCodeBg: Color
+  themeCodeFg: Color
   themeModalBg: Color
   themeModalFg: Color
   themeAccentABg: Color

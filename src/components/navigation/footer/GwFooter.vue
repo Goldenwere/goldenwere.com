@@ -12,7 +12,7 @@ const site = reactive(store.site)
 </script>
 
 <template lang='pug'>
-footer
+footer.primary-nav
   router-link.logo.nav(
     :to='home'
   )
@@ -24,7 +24,7 @@ footer
 </template>
 
 <style scoped lang='sass'>
-footer
+.primary-nav
   bottom: 0
   left: 0
   right: 0

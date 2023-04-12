@@ -7,6 +7,10 @@ import type { Press } from '@/src/types/press'
 import GwArticle from '@/src/components/embeds/GwArticle.vue'
 import GwImage from '@/src/components/embeds/GwImage.vue'
 import GwVideo from '@/src/components/embeds/GwVideo.vue'
+import PressAccolades from './PressAccolades.vue'
+import PressContributors from './PressContributors.vue'
+import PressHeader from './PressHeader.vue'
+import PressNav from './PressNav.vue'
 
 const props = defineProps<{
   id: string
@@ -35,59 +39,19 @@ if (!found) {
   press.value = found.content
   ready.value = true
 }
-
-function scrollTo (id: string) {
-  document.getElementById(id)?.scrollIntoView()
-}
 </script>
 
 <template lang='pug'>
 .content.press(
   v-if='ready'
 )
-  nav
-    router-link.nav.link(
-      to='#description'
-      @click.native='scrollTo("description")'
-    ) Description
-    router-link.nav.link(
-      v-if='press.videos'
-      to='#videos'
-      @click.native='scrollTo("videos")'
-    ) Videos
-    router-link.nav.link(
-      v-if='press.videos'
-      to='#images'
-      @click.native='scrollTo("images")'
-    ) Images
-    router-link.nav.link(
-      v-if='press.videos'
-      to='#branding'
-      @click.native='scrollTo("branding")'
-    ) Branding
-    router-link.nav.link(
-      v-if='press.articles || press.awards'
-      to='#accolades'
-      @click.native='scrollTo("accolades")'
-    ) Accolades
-    router-link.nav.link(
-      v-if='press.contact || press.credits'
-      to='#contributors'
-      @click.native='scrollTo("contributors")'
-    ) Contributors
-    router-link.nav.link(
-      v-if='press.disclaimer'
-      to='#disclaimer'
-      @click.native='scrollTo("disclaimer")'
-    ) Disclaimer
+  PressNav(
+    :press='press'
+  )
   article.press-article
-    .banner(
-      v-if='press.banner'
+    PressHeader(
+      :press='press'
     )
-      GwImage(
-        :image='press.banner'
-      )
-    h1 {{ press.title }}
     .press-content
       section#factsheet
         h2 Fact Sheet
@@ -157,86 +121,12 @@ function scrollTo (id: string) {
               p(
                 v-if='img.caption'
               ) {{ img.caption }}
-        .two-column#accolades(
-          v-if='press.articles || press.awards'
+        PressAccolades.two-column(
+          :press='press'
         )
-          section#awards(
-            v-if='press.awards'
-          )
-            h3 Awards
-            ul
-              li(
-                v-for='award in press.awards'
-              )
-                span {{ award.title }}
-                span(
-                  v-if='award.link'
-                )
-                  | &#32;(
-                  a.link(
-                    :href='award.link.href'
-                  ) {{ award.link.caption || award.link.href }}
-                  | )
-          section#articles(
-            v-if='press.articles'
-          )
-            h3 Articles
-            ul
-              li(
-                v-for='article in press.articles'
-              )
-                .title
-                  span {{ article.title }}
-                a.link(
-                  :href='article.link.href'
-                ) {{ article.link.caption || article.link.href }}
-        .two-column#contributors(
-          v-if='press.contact || press.credits'
+        PressContributors.two-column(
+          :press='press'
         )
-          section#credits(
-            v-if='press.credits'
-          )
-            h2 Credits
-            ul
-              li(
-                v-for='credit in press.credits'
-              )
-                .who
-                  span {{ credit.who }}
-                .for(
-                  v-if='credit.for'
-                )
-                  span {{ credit.for }}
-                .links(
-                  v-if='credit.links?.length === 1'
-                )
-                  a.link(
-                    :href='credit.links[0].href'
-                  ) {{ credit.links[0].caption || credit.links[0].href }}
-                ul.links(
-                  v-else-if='credit.link?.length > 1'
-                )
-                  li(
-                    v-for='link in credit.links'
-                  )
-                    a.link(
-                      :href='link.href'
-                    ) {{ link.caption || link.href }}
-          section#contact(
-            v-if='press.contact'
-          )
-            h2 Contact
-            ul
-              li(
-                v-for='contact in press.contact'
-              )
-                .title(
-                  v-if='contact.title'
-                ) 
-                  span {{ contact.title }}
-                a.link(
-                  :href='contact.link.href'
-                ) {{ contact.link.caption || contact.link.href }}
         section#disclaimer(
           v-if='press.disclaimer'
         )
@@ -248,24 +138,10 @@ function scrollTo (id: string) {
 </template>
 
 <style scoped lang='sass'>
-nav
-  position: fixed
-  top: 4em
-  margin-top: 2em
-  width: fit-content
-  margin-left: 1em
-  display: flex
-  flex-direction: column
-  a
-    margin-bottom: 0.5em
-    font-size: 1.5em
 .press-article
   margin-left: 16em
   margin-right: 4em
   margin-top: 2em
-.banner
-  height: 4em
-  width: auto
 .press-content
   display: grid
   grid-template-columns: 1fr 3fr
@@ -347,10 +223,4 @@ ul
 #description::v-deep
   article
     max-width: 32em
-
-#credits
-  .who
-    font-weight: bold
-  .for
-    font-style: italic
 </style>

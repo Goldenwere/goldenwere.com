@@ -77,8 +77,6 @@ h1
     flex-direction: column
     justify-content: center
     align-items: center
-    text-shadow: 0 0 2px var(--theme-modal-bg)
-    -webkit-text-stroke: 0.5px var(--theme-accent-a-fg)
 .about
   width: 100vmin
   margin: 4em auto

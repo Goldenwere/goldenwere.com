@@ -48,7 +48,7 @@ export interface Press {
   }[]
   /* [MARKDOWN] the main descriptive content of the app */
   description: Section[]
-  /* disclaimer for press/etc regarding usage permissions for the information on the page or the app as a whole */
+  /* [MARKDOWN] disclaimer for press/etc regarding usage permissions for the information on the page or the app as a whole */
   disclaimer?: string
   /* [MARKDOWN] an aside of various facts related to the app */
   factSheet?: Section[]

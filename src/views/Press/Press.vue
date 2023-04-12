@@ -100,9 +100,8 @@ if (!found) {
           v-if='press.disclaimer'
         )
           h2 Disclaimer
-          p(
-            v-for='p in press.disclaimer'
-            v-html='p'
+          GwArticle(
+            :content='press.disclaimer'
           )
 </template>
 
@@ -169,8 +168,9 @@ ul
   ul
     padding-left: 1em
 
+#branding::v-deep,
 #description::v-deep,
-#branding::v-deep
+#disclaimer::v-deep
   article
     max-width: 32em
 </style>

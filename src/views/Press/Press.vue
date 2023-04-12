@@ -119,6 +119,13 @@ function scrollTo (id: string) {
           v-if='press.images'
         )
           h2 Images
+          .download(
+            v-if='press.images.download'
+          )
+            a(
+              :href='press.images.download'
+            )
+              span Download all images as a .zip
           .media-gallery
             .gallery-element(
               v-for='img in press.images.samples'
@@ -133,6 +140,13 @@ function scrollTo (id: string) {
           v-if='press.branding'
         )
           h2 Branding
+          .download(
+            v-if='press.branding.download'
+          )
+            a(
+              :href='press.branding.download'
+            )
+              span Download all assets as a .zip
           .media-gallery
             .gallery-element(
               v-for='img in press.branding.samples'
@@ -265,6 +279,8 @@ ul
   padding-left: 1em
 .title
   font-weight: bold
+.download
+  margin-bottom: 1em
 
 .media-gallery
   display: grid

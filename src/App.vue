@@ -2,17 +2,17 @@
 import { nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { capitalizeFirstLetter } from '@/src/utilities/string'
-import { fetchAndParseContent } from '@/src/utilities/fetch'
+import { fetchAndParseYaml } from '@/src/utilities/fetch'
 import { useStore } from '@/src/store'
 import type { Site } from '@/src/types/site'
-import GwHeader from '@/src/components/navigation/header/GwHeader.vue'
-import GwFooter from '@/src/components/navigation/footer/GwFooter.vue'
+import GwHeader from '@/src/components/navigation/GwHeader.vue'
+import GwFooter from '@/src/components/navigation/GwFooter.vue'
 
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
 
-fetchAndParseContent('/content/site.yml')
+fetchAndParseYaml('/content/site.yml')
   .then(async (content) => {
     store.$patch({ site: content as Site })
     await router.isReady()

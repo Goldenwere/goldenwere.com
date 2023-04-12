@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from '@/src/store'
-import { fetchAndParseContent } from '@/src/utilities/fetch'
+import { fetchAndParseYaml } from '@/src/utilities/fetch'
 import type { Press } from '@/src/types/press'
 import GwArticle from '@/src/components/embeds/GwArticle.vue'
 import GwGallery from '@/src/components/embeds/GwGallery.vue'
@@ -25,7 +25,7 @@ const press = ref({} as Press)
 
 const found = store.press.find((other) => other.id === props.id)
 if (!found) {
-  fetchAndParseContent(`/content/press/${props.id}.yml`)
+  fetchAndParseYaml(`/content/press/${props.id}.yml`)
     .then((content) => {
       store.$patch({ press: [
         ...store.press,

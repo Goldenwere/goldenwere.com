@@ -1,6 +1,11 @@
 import yaml from 'js-yaml'
 import DOMPurify from 'dompurify'
 
+/**
+ * Config used for DOMPurify.
+ * This config allows for most HTML elements and a handful of attributes
+ * necessary for the site to load intended markdown/etc
+ */
 const domPurifyConfig = {
   ALLOW_ARIA_ATTR: true,
   ALLOWED_ATTR: [
@@ -59,7 +64,12 @@ const domPurifyConfig = {
   ],
 }
 
-export const fetchAndParseContent = async (path: string) => {
+/**
+ * Fetches, sanitizes, and parses YAML files
+ * @param path the path of the YAML file to load
+ * @returns the content of the YAML file after sanitizing then parsing
+ */
+export const fetchAndParseYaml = async (path: string) => {
   const response = await fetch(path)
   const blob = await response.blob()
   const yamlAsString = await blob.text()

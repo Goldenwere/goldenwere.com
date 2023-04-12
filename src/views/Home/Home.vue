@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { fetchAndParseContent } from '@/src/utilities/fetch'
+import { fetchAndParseYaml } from '@/src/utilities/fetch'
 import { useStore } from '@/src/store'
 import GwImage from '@/src/components/embeds/GwImage.vue'
 import GwVideo from '@/src/components/embeds/GwVideo.vue'
@@ -14,7 +14,7 @@ const site = reactive(store.site)
 const ready = ref(false)
 
 if (store.home.about === undefined) {
-  fetchAndParseContent('/content/home.yml')
+  fetchAndParseYaml('/content/home.yml')
     .then((content) => {
       store.$patch({ home: content as Home })
       ready.value = true

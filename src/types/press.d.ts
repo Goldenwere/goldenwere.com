@@ -1,6 +1,5 @@
 import type { Image } from '@/src/types/embeds/image'
 import type { Link } from '@/src/types/embeds/link'
-import type { Section } from '@/src/types/embeds/section'
 import type { Video } from '@/src/types/embeds/video'
 
 /**
@@ -47,11 +46,11 @@ export interface Press {
     links?: Link[]
   }[]
   /* [MARKDOWN] the main descriptive content of the app */
-  description: Section[]
+  description: string
   /* [MARKDOWN] disclaimer for press/etc regarding usage permissions for the information on the page or the app as a whole */
   disclaimer?: string
   /* [MARKDOWN] an aside of various facts related to the app */
-  factSheet?: Section[]
+  factSheet?: string
   /* images related to the app */
   images?: {
     /* an optional location to download all images as an archive file */

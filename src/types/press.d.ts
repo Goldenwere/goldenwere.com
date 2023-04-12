@@ -27,6 +27,8 @@ export interface Press {
   branding?: {
     /* an optional location to download all images as an archive file */
     download?: string
+    /* [MARKDOWN] optional branding guidelines */
+    guidelines?: string
     /* images to show directly on the page */
     samples: Image[]
   }
@@ -44,11 +46,11 @@ export interface Press {
     /* any links to the person/entity that may be relevant */
     links?: Link[]
   }[]
-  /* the main descriptive content of the app */
+  /* [MARKDOWN] the main descriptive content of the app */
   description: Section[]
   /* disclaimer for press/etc regarding usage permissions for the information on the page or the app as a whole */
   disclaimer?: string
-  /* an aside of various facts related to the app */
+  /* [MARKDOWN] an aside of various facts related to the app */
   factSheet?: Section[]
   /* images related to the app */
   images?: {
